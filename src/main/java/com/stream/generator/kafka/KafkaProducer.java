@@ -7,9 +7,26 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class KafkaProducer {
 
-	public void test() {
+	private Producer<String, String> producer;
+
+	public KafkaProducer(boolean configureProducer) {
+		if (configureProducer) {
+			configureProducer();
+		}
+	}
+
+	public KafkaProducer() {
+	}
+
+	public void initializeProducer() {
+		configureProducer();
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void configureProducer() {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "localhost:9092");
+		props.put("zookeper.connect", "localhost:2181");
 		props.put("acks", "all");
 		props.put("retries", 0);
 		props.put("batch.size", 16384);
@@ -18,10 +35,24 @@ public class KafkaProducer {
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
-		Producer<String, String> producer = new org.apache.kafka.clients.producer.KafkaProducer(props);
-		for (int i = 0; i < 100; i++)
-			producer.send(new ProducerRecord<String, String>("tweets-text", Integer.toString(i), Integer.toString(i)));
+		producer = new org.apache.kafka.clients.producer.KafkaProducer(props);
+	}
 
+	/**
+	 * Sends message using Kafka Producer API
+	 * 
+	 * @param topicName
+	 * @param key
+	 * @param value
+	 */
+	public void produceMessage(String topicName, String key, String value) {
+		producer.send(new ProducerRecord<String, String>(topicName, key, value));
+	}
+
+	/**
+	 * Closes
+	 */
+	public void closeProducer() {
 		producer.close();
 	}
 }
