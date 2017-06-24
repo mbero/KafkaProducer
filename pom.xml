@@ -4,7 +4,8 @@
 	<groupId>com.bms.data</groupId>
 	<artifactId>StreamGenerator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>Simple Data Generator with Kafka-Producer role	</description>
+	<description>Simple BMS Data Generator with Kafka Producer. Prepared  as test source of data for BMS Stream data analytics platform
+	instead of source of real time data	</description>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka_2.10 -->

@@ -3,18 +3,20 @@ package com.stream.generator.bms;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import com.stream.generator.sqlite.SQLiteDBClient;
 
 public class BMSDataStreamGenerator {
 
-	public static ArrayDeque<SingleBMSReadRecord> listOfReadRecord;
+	private static ArrayList<SingleBMSReadRecord> listOfReadRecord;
 
 	public void putAllDataFromTrendTableIntoMemory() throws Exception {
 		SQLiteDBClient sqliteDBClient = new SQLiteDBClient();
 		ResultSet rs = null;
-		listOfReadRecord = new ArrayDeque<SingleBMSReadRecord>();
+		listOfReadRecord = new ArrayList<SingleBMSReadRecord>();
 		Connection connection = sqliteDBClient
 				.getConnection("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
 		try {
@@ -33,6 +35,22 @@ public class BMSDataStreamGenerator {
 			e.printStackTrace();
 		}
 
+	}
+
+	private <T> T getRandomItem(List<T> list) {
+		Random random = new Random();
+		int listSize = list.size();
+		int randomIndex = random.nextInt(listSize);
+		return list.get(randomIndex);
+	}
+
+	public SingleBMSReadRecord getRandomRecordFromWholeListOfBMSReadRecords() {
+		SingleBMSReadRecord randomRecord = getRandomItem(listOfReadRecord);
+		return randomRecord;
+	}
+
+	public ArrayList<SingleBMSReadRecord> getWholeListOfBMSReadRecords() {
+		return listOfReadRecord;
 	}
 
 }
