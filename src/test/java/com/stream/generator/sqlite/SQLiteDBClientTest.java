@@ -30,7 +30,7 @@ public class SQLiteDBClientTest {
 		Connection conn = sqliteClient.getConnection(sqliteDBPath);
 		try {
 			sqliteClient.closeConnection(conn);
-			assertNull(conn);
+			assertTrue(conn.isClosed());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

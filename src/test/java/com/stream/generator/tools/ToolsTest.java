@@ -22,7 +22,7 @@ public class ToolsTest {
 		SingleBMSReadRecord singleBMSRecord = new SingleBMSReadRecord("2018294", "some value", "some id", "readTag_id");
 		String jsonString = "";
 		try {
-			jsonString = tools.getJSONStringFromGivenObject(singleBMSRecord);
+			jsonString = Tools.getJSONStringFromGivenObject(singleBMSRecord);
 		} catch (JsonProcessingException e) {
 			System.out.println("Error during processing Object into JSON string");
 			e.printStackTrace();
