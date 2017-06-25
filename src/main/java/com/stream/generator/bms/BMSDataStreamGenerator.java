@@ -12,13 +12,16 @@ import com.stream.generator.sqlite.SQLiteDBClient;
 public class BMSDataStreamGenerator {
 
 	private static ArrayList<SingleBMSReadRecord> listOfReadRecord;
-
-	public void putAllDataFromTrendTableIntoMemory() throws Exception {
+	/**
+	 * 
+	 * @param bmsSQLiteDBPath
+	 * @throws Exception
+	 */
+	public void putAllDataFromTrendTableIntoMemory(String bmsSQLiteDBPath) throws Exception {
 		SQLiteDBClient sqliteDBClient = new SQLiteDBClient();
 		ResultSet rs = null;
 		listOfReadRecord = new ArrayList<SingleBMSReadRecord>();
-		Connection connection = sqliteDBClient
-				.getConnection("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
+		Connection connection = sqliteDBClient.getConnection(bmsSQLiteDBPath);
 		try {
 			rs = sqliteDBClient.getResultSetFromGivenSelectQuery(connection, "SELECT * FROM TREND");
 			while (rs.next()) {
@@ -30,6 +33,9 @@ public class BMSDataStreamGenerator {
 						readTag_id);
 				listOfReadRecord.add(singleBMSReadRecord);
 			}
+			rs.close();
+			rs.clearWarnings();
+			sqliteDBClient.closeStatement();
 			sqliteDBClient.closeConnection(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();

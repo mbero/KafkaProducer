@@ -18,7 +18,7 @@ public class BMSDataStreamGeneratorTest {
 	@Test
 	public void testputAllDataromTrendTableInMemory() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory();
+			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
 			List<SingleBMSReadRecord> allRecordsFromTestTable = bmsDataStreamGenerator.getWholeListOfBMSReadRecords();
 			assertTrue(allRecordsFromTestTable.size() > 0);
 		} catch (Exception e) {
@@ -30,7 +30,7 @@ public class BMSDataStreamGeneratorTest {
 	@Test
 	public void getRandomRecordFromWholeListOfBMSReadRecords() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory();
+			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
 			SingleBMSReadRecord singleBMSRecord = bmsDataStreamGenerator.getRandomRecordFromWholeListOfBMSReadRecords();
 			assertNotNull(singleBMSRecord);
 		} catch (Exception e) {

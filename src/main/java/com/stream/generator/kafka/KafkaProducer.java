@@ -9,24 +9,23 @@ public class KafkaProducer {
 
 	private Producer<String, String> producer;
 
-	public KafkaProducer(boolean configureProducer) {
-		if (configureProducer) {
-			configureProducer();
-		}
-	}
 
 	public KafkaProducer() {
 	}
-
-	public void initializeProducer() {
-		configureProducer();
+	/**
+	 * Responsible for invoking Producer
+	 * @param bootstrapServerAdress
+	 * @param zookeperAdress
+	 */
+	public void initializeProducer(String bootstrapServerAdress, String zookeperAdress) {
+		configureProducer(bootstrapServerAdress, zookeperAdress);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void configureProducer() {
+	private void configureProducer(String bootstrapServerAdress, String zookeperAdress) {
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "localhost:9092");
-		props.put("zookeper.connect", "localhost:2181");
+		props.put("bootstrap.servers", bootstrapServerAdress);
+		props.put("zookeper.connect", zookeperAdress);
 		props.put("acks", "all");
 		props.put("retries", 0);
 		props.put("batch.size", 16384);

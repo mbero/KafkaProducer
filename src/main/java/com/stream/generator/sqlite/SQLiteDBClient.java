@@ -7,13 +7,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLiteDBClient {
-	
+
+	private Statement statement;
+
 	/**
 	 * 
-	 * @param sqliteDBFilePath  : String is proper path for SQLite Database file
-	 * F.Example : f.e E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db
-	 * @return Connection object 
+	 * @param sqliteDBFilePath
+	 *            : String is proper path for SQLite Database file F.Example :
+	 *            f.e E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db
+	 * @return Connection object
 	 */
+	// TODO - should be singleton
 	public Connection getConnection(String sqliteDBFilePath) {
 		Connection conn = null;
 		try {
@@ -33,11 +37,21 @@ public class SQLiteDBClient {
 		connection.close();
 	}
 
-	public ResultSet getResultSetFromGivenSelectQuery(Connection connection, String selectQuery) throws SQLException {
-		Statement stmt = null;
-		stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery(selectQuery);
+	public void closeStatement() {
+		if (statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
+	public ResultSet getResultSetFromGivenSelectQuery(Connection connection, String selectQuery) throws SQLException {
+		// Statement stmt = null;
+		statement = connection.createStatement();
+		ResultSet rs = statement.executeQuery(selectQuery);
+		// stmt.close();
 		return rs;
 	}
 

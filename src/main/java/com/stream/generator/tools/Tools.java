@@ -10,7 +10,7 @@ public class Tools {
 	 * @return
 	 * @throws JsonProcessingException
 	 */
-	public String getJSONStringFromGivenObject(Object object) throws JsonProcessingException{
+	public static String getJSONStringFromGivenObject(Object object) throws JsonProcessingException{
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString = mapper.writeValueAsString(object);
 		return jsonInString;
