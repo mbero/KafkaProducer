@@ -19,29 +19,29 @@ public class SQLiteDataStreamGeneratorTest {
 	public void setUp() throws Exception {
 		bmsDataStreamGenerator = new SQLiteDataStreamGenerator();
 	}
-	
+
 	@Test
-	public void testGetListOfSingleBMSRecordsFromProperJSONFile(){
+	public void testGetListOfSingleBMSRecordsFromProperJSONFile() {
 		try {
-			List<SingleBMSReadRecord> bmsRecordReads = bmsDataStreamGenerator.getListOfSingleBMSRecordsFromProperJSONFile("E:\\PCSS\\bms_analytics_workspace\\StreamGenerator\\tests\\resultsJSONFile.json");
-			assertTrue(bmsRecordReads.size()>0);
+			List<SingleBMSReadRecord> bmsRecordReads = bmsDataStreamGenerator
+					.getListOfSingleBMSRecordsFromProperJSONFile(
+							"E:\\PCSS\\bms_analytics_workspace\\StreamGenerator\\tests\\resultsJSONFile.json");
+			assertTrue(bmsRecordReads.size() > 0);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Test
 	public void testputAllDataromTrendTableInMemory() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
+			bmsDataStreamGenerator
+					.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
 			List<SingleBMSReadRecord> allRecordsFromTestTable = bmsDataStreamGenerator.getWholeListOfBMSReadRecords();
 			assertTrue(allRecordsFromTestTable.size() > 0);
 		} catch (Exception e) {
@@ -53,7 +53,8 @@ public class SQLiteDataStreamGeneratorTest {
 	@Test
 	public void getRandomRecordFromWholeListOfBMSReadRecords() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
+			bmsDataStreamGenerator
+					.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
 			SingleBMSReadRecord singleBMSRecord = bmsDataStreamGenerator.getRandomRecordFromWholeListOfBMSReadRecords();
 			assertNotNull(singleBMSRecord);
 		} catch (Exception e) {
