@@ -1,8 +1,8 @@
 package com.stream.generator.main;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.stream.generator.bms.BMSDataStreamGenerator;
 import com.stream.generator.bms.SingleBMSReadRecord;
+import com.stream.generator.bms.sqlite.SQLiteDataStreamGenerator;
 import com.stream.generator.kafka.KafkaProducer;
 import com.stream.generator.tools.Tools;
 
@@ -20,7 +20,7 @@ public class Main {
 		String directPathToSQLiteDBFile = args[3]; // "E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db"
 		KafkaProducer kafkaProducer = new KafkaProducer();
 		kafkaProducer.initializeProducer(kafkaBootstrapServerAdress, zookeperAdress);
-		BMSDataStreamGenerator bmsDataStreamGenerator = new BMSDataStreamGenerator();
+		SQLiteDataStreamGenerator bmsDataStreamGenerator = new SQLiteDataStreamGenerator();
 		try {
 			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory(directPathToSQLiteDBFile);
 			for (int i = 0; i < 100000000; i++) {

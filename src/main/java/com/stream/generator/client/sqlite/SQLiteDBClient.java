@@ -1,4 +1,4 @@
-package com.stream.generator.sqlite;
+package com.stream.generator.client.sqlite;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

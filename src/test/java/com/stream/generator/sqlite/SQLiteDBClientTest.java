@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.stream.generator.client.sqlite.SQLiteDBClient;
+
 public class SQLiteDBClientTest {
 
 	private SQLiteDBClient sqliteClient;
