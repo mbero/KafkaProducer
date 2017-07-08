@@ -14,7 +14,7 @@ import com.stream.generator.client.sqlite.SQLiteDBClient;
 public class SQLiteDBClientTest {
 
 	private SQLiteDBClient sqliteClient;
-	private final static String sqliteDBPath = "E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db";
+	private final static String sqliteDBPath = "/home/centos/Desktop/StreamGenerator/BMS_DB.db";
 
 	@Before
 	public void setUp() throws Exception {

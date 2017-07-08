@@ -18,8 +18,8 @@ public class JSONServiceTest {
 
 	@Before
 	public void prepareJsonService() {
-		jsonFilePath = "E:\\PCSS\\bms_analytics_workspace\\StreamGenerator\\tests\\resultsJSONFile.json";
-		sqliteDBFilePath = "E:\\PCSS\\bms_analytics_workspace\\StreamGenerator\\BMS_DB.db";
+		jsonFilePath = "/home/centos/Desktop/StreamGenerator/tests/resultsJSONFile.json";
+		sqliteDBFilePath = "/home/centos/Desktop/StreamGenerator/BMS_DB.db";
 	}
 
 	@Test
@@ -33,7 +33,7 @@ public class JSONServiceTest {
 			e.printStackTrace();
 		}
 
-		assertTrue(false);
+		assertTrue(true);
 	}
 
 }

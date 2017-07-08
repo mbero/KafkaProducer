@@ -26,6 +26,14 @@ public class StreamDataObjectsGenerator {
 
 	private static ArrayList<SingleBMSReadRecord> listOfReadRecord;
 
+	public static ArrayList<SingleBMSReadRecord> getListOfReadRecord() {
+		return listOfReadRecord;
+	}
+
+	public static void setListOfReadRecord(ArrayList<SingleBMSReadRecord> listOfReadRecord) {
+		StreamDataObjectsGenerator.listOfReadRecord = listOfReadRecord;
+	}
+
 	/**
 	 * 
 	 * @param bmsSQLiteDBPath
@@ -96,28 +104,25 @@ public class StreamDataObjectsGenerator {
 		return listOfReadRecord;
 	}
 
-	public List<SingleBMSReadRecord> getListOfSingleBMSRecordsFromProperJSONFile(String fullPathToJSONFile)
+	public ArrayList<SingleBMSReadRecord> getListOfSingleBMSRecordsFromProperJSONFile(String fullPathToJSONFile)
 			throws JsonParseException, JsonMappingException, IOException, ParseException, ClassNotFoundException {
-		List<SingleBMSReadRecord> bmsReadRecordsList = new ArrayList<SingleBMSReadRecord>();
+		ArrayList<SingleBMSReadRecord> bmsReadRecordsList = new ArrayList<SingleBMSReadRecord>();
 		JSONParser parser = new JSONParser();
 		Object object = parser.parse(new FileReader(fullPathToJSONFile));
 		String stringifiedJsonObject = object.toString();
-		JSONArray array = (JSONArray)parser.parse(stringifiedJsonObject);
-		for(int i=0; i<array.size(); i++){
-			
+		JSONArray array = (JSONArray) parser.parse(stringifiedJsonObject);
+		for (int i = 0; i < array.size(); i++) {
+
 			org.json.simple.JSONObject currentJSONObject = (JSONObject) array.get(i);
-			//{"readValue":"22.0","readIOdev_id":"1","readTag_id":"1","readDate":"2017-03-31 10:13:37.088000"}
+			// {"readValue":"22.0","readIOdev_id":"1","readTag_id":"1","readDate":"2017-03-31
+			// 10:13:37.088000"}
 			SingleBMSReadRecord singleBMSReadRecord = new SingleBMSReadRecord(
-					currentJSONObject.get("readDate").toString(), 
-					currentJSONObject.get("readValue").toString(), 
-					currentJSONObject.get("readIOdev_id").toString(), 
-					currentJSONObject.get("readTag_id").toString()
-			);
+					currentJSONObject.get("readDate").toString(), currentJSONObject.get("readValue").toString(),
+					currentJSONObject.get("readIOdev_id").toString(), currentJSONObject.get("readTag_id").toString());
 			bmsReadRecordsList.add(singleBMSReadRecord);
 		}
-		
+
 		return bmsReadRecordsList;
 	}
 
-	
 }

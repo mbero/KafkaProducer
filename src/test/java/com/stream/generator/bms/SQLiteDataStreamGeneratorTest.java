@@ -23,7 +23,7 @@ public class SQLiteDataStreamGeneratorTest {
 	@Test
 	public void testGetListOfSingleBMSRecordsFromProperJSONFile(){
 		try {
-			List<SingleBMSReadRecord> bmsRecordReads = bmsDataStreamGenerator.getListOfSingleBMSRecordsFromProperJSONFile("E:\\PCSS\\bms_analytics_workspace\\StreamGenerator\\tests\\resultsJSONFile.json");
+			List<SingleBMSReadRecord> bmsRecordReads = bmsDataStreamGenerator.getListOfSingleBMSRecordsFromProperJSONFile("/home/centos/Desktop/StreamGenerator/tests/resultsJSONFile.json");
 			assertTrue(bmsRecordReads.size()>0);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class SQLiteDataStreamGeneratorTest {
 	@Test
 	public void testputAllDataromTrendTableInMemory() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
+			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("/home/centos/Desktop/StreamGenerator/BMS_DB.db");
 			List<SingleBMSReadRecord> allRecordsFromTestTable = bmsDataStreamGenerator.getWholeListOfBMSReadRecords();
 			assertTrue(allRecordsFromTestTable.size() > 0);
 		} catch (Exception e) {
@@ -51,7 +51,7 @@ public class SQLiteDataStreamGeneratorTest {
 	@Test
 	public void getRandomRecordFromWholeListOfBMSReadRecords() {
 		try {
-			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("E:/PCSS/bms_analytics_workspace/StreamGenerator/BMS_DB.db");
+			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory("/home/centos/Desktop/StreamGenerator/BMS_DB.db");
 			SingleBMSReadRecord singleBMSRecord = bmsDataStreamGenerator.getRandomRecordFromWholeListOfBMSReadRecords();
 			assertNotNull(singleBMSRecord);
 		} catch (Exception e) {
