@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.stream.generator.bms.SingleBMSReadRecord;
-import com.stream.generator.bms.sqlite.SQLiteDataStreamGenerator;
+import com.stream.generator.bms.sqlite.StreamDataObjectsGenerator;
 
 public class JSONServiceTest {
 
@@ -24,7 +24,7 @@ public class JSONServiceTest {
 
 	@Test
 	public void testSaveJSONObjectToFile() {
-		SQLiteDataStreamGenerator bmsDataStreamGenerator = new SQLiteDataStreamGenerator();
+		StreamDataObjectsGenerator bmsDataStreamGenerator = new StreamDataObjectsGenerator();
 		try {
 			bmsDataStreamGenerator.putAllDataFromTrendTableIntoMemory(sqliteDBFilePath);
 			jsonService = new JSONService();

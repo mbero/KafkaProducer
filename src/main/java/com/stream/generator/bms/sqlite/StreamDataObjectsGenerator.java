@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stream.generator.bms.SingleBMSReadRecord;
 import com.stream.generator.client.sqlite.SQLiteDBClient;
 
-public class SQLiteDataStreamGenerator {
+public class StreamDataObjectsGenerator {
 
 	private static ArrayList<SingleBMSReadRecord> listOfReadRecord;
 
