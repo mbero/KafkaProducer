@@ -16,9 +16,9 @@ import com.stream.generator.tools.Tools;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-		if (args.length < 4) {
+		if (args.length < 5) {
 			System.err.println(
-					"Parameters should consist of : <kafka_bootstrap_server_adress> <zookeper_adress> <topic_name> <direct_path_to_sqlite_db_file>");
+					"Parameters should consist of : <kafka_bootstrap_server_adress> <zookeper_adress> <topic_name> <direct_path_to_sqlite_db_file> <time_between_messages_in_seconds>");
 			System.exit(1);
 		}
 		String kafkaBootstrapServerAdress = args[0]; // f.e "localhost:9092"
@@ -48,7 +48,7 @@ public class Main {
 			}
 			kafkaProducer.produceMessage(topicName, String.valueOf(i), singleBMSRecordString);
 			System.out.println(singleBMSRecordString);
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.SECONDS.sleep(Integer.valueOf(args[4]));
 		}
 		kafkaProducer.closeProducer();
 	}
