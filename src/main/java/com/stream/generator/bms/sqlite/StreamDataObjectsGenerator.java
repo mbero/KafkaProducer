@@ -103,6 +103,7 @@ public class StreamDataObjectsGenerator {
 	public ArrayList<SingleBMSReadRecord> getWholeListOfBMSReadRecords() {
 		return listOfReadRecord;
 	}
+	
 
 	public ArrayList<SingleBMSReadRecord> getListOfSingleBMSRecordsFromProperJSONFile(String fullPathToJSONFile)
 			throws JsonParseException, JsonMappingException, IOException, ParseException, ClassNotFoundException {

@@ -25,7 +25,12 @@ public class KafkaProducer {
 	private void configureProducer(String bootstrapServerAdress, String zookeperAdress) {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", bootstrapServerAdress);
-		props.put("zookeper.connect", zookeperAdress);
+		if(zookeperAdress.equals("NONE")!=true){
+			props.put("zookeper.connect", zookeperAdress);
+		}
+		else{
+			System.out.println("zookeper.connect parameter not used during kafka producer start");
+		}
 		props.put("acks", "all");
 		props.put("retries", 0);
 		props.put("batch.size", 16384);
