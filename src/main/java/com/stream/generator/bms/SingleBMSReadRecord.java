@@ -11,6 +11,17 @@ public class SingleBMSReadRecord {
 	private String readValue;
 	private String readIOdev_id;
 	private String readTag_id;
+	private String readDateMillis; //FIXME  - probably temporary property, readDate will be date in Milliseconds
+	
+	
+
+	public String getReadDateMillis() {
+		return readDateMillis;
+	}
+
+	public void setReadDateMillis(String readDateMillis) {
+		this.readDateMillis = readDateMillis;
+	}
 
 	public String getReadDate() {
 		return readDate;
@@ -44,12 +55,13 @@ public class SingleBMSReadRecord {
 		this.readTag_id = readTag_id;
 	}
 
-	public SingleBMSReadRecord(String readDate, String readValue, String readIOdev_id, String readTag_id) {
+	public SingleBMSReadRecord(String readDate, String readValue, String readIOdev_id, String readTag_id, String readDateMillis) {
 		super();
 		this.readDate = readDate;
 		this.readValue = readValue;
 		this.readIOdev_id = readIOdev_id;
 		this.readTag_id = readTag_id;
+		this.readDateMillis = readDateMillis;
 	}
 
 }

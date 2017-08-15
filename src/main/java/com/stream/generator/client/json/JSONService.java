@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.stream.generator.bms.SingleBMSReadRecord;
+import com.stream.generator.tools.Tools;
 
 public class JSONService {
 
@@ -40,11 +41,20 @@ public class JSONService {
 			
 			org.json.simple.JSONObject currentJSONObject = (JSONObject) array.get(i);
 			//{"readValue":"22.0","readIOdev_id":"1","readTag_id":"1","readDate":"2017-03-31 10:13:37.088000"}
+			String readDateInMilliseconds = "";
+			try {
+				readDateInMilliseconds = Tools.getMillisecondsFromBMSDateString(currentJSONObject.get("readDate").toString());
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 			SingleBMSReadRecord singleBMSReadRecord = new SingleBMSReadRecord(
 					currentJSONObject.get("readDate").toString(), 
 					currentJSONObject.get("readValue").toString(), 
 					currentJSONObject.get("readIOdev_id").toString(), 
-					currentJSONObject.get("readTag_id").toString()
+					currentJSONObject.get("readTag_id").toString(),
+					readDateInMilliseconds
 			);
 			bmsReadRecordsList.add(singleBMSReadRecord);
 		}

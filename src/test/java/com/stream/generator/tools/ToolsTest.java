@@ -2,7 +2,8 @@ package com.stream.generator.tools;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
+import java.text.ParseException;
+
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,16 +11,10 @@ import com.stream.generator.bms.SingleBMSReadRecord;
 
 public class ToolsTest {
 
-	private Tools tools;
-
-	@Before
-	public void setUp() throws Exception {
-		tools = new Tools();
-	}
-
 	@Test
 	public void testGetJsonFromGivenObject() {
-		SingleBMSReadRecord singleBMSRecord = new SingleBMSReadRecord("2018294", "some value", "some id", "readTag_id");
+		SingleBMSReadRecord singleBMSRecord = new SingleBMSReadRecord("2018294", "some value", "some id", "readTag_id",
+				"201203912");
 		String jsonString = "";
 		try {
 			jsonString = Tools.getJSONStringFromGivenObject(singleBMSRecord);
@@ -28,6 +23,28 @@ public class ToolsTest {
 			e.printStackTrace();
 		}
 		assertNotEquals("", jsonString);
+	}
+
+	@Test
+	public void testGetMillisecondsFromBMSDateString() {
+		try {
+			String milliseconds = Tools.getMillisecondsFromBMSDateString("2017-03-31 10:13:37.088000");
+			assertTrue(milliseconds.equals("")!=true);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testGetMillisecondsFromGivenDateString(){
+		try {
+			String milliseconds = Tools.getMilliSecondsFromGivenDateFormat("yyyy-MM-dd HH:mm:ss.SSS", "2017-03-31 10:13:37.088000");
+			assertTrue(milliseconds.equals("")!=true);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
