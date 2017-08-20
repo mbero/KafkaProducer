@@ -53,7 +53,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		List<SingleBMSReadRecord> randomlySelectedBMSReadRecords = bmsDataStreamGenerator
-				.getGivenAmountOfRandomRecordsFromWholeListOfBMSReadRecords(bmsDataRecords, 100000);
+				.getGivenAmountOfRandomRecordsFromWholeListOfBMSReadRecords(bmsDataRecords, 10000000);
 		int i = 0;
 		for (SingleBMSReadRecord singleBMSRead : randomlySelectedBMSReadRecords) {
 			i += 1;
