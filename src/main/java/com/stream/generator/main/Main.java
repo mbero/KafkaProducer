@@ -22,7 +22,7 @@ public class Main {
 					+ "<topic_name>"
 					+ "<type_of_data_source> - JSON or SQLITE"
 					+ "<path_to_data_source> (full path to proper JSON file or SQLITE.DB file"
-					+ "<time_between_meessages> - in seconds, for example : 1,2 etc");
+					+ "<time_between_meessages> - in milliseconds, for example : 1,2 etc");
 			System.exit(1);
 		}
 
@@ -53,7 +53,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		List<SingleBMSReadRecord> randomlySelectedBMSReadRecords = bmsDataStreamGenerator
-				.getGivenAmountOfRandomRecordsFromWholeListOfBMSReadRecords(bmsDataRecords, 10000000);
+				.getGivenAmountOfRandomRecordsFromWholeListOfBMSReadRecords(bmsDataRecords, 100000000);
 		int i = 0;
 		for (SingleBMSReadRecord singleBMSRead : randomlySelectedBMSReadRecords) {
 			i += 1;
@@ -62,7 +62,7 @@ public class Main {
 				singleBMSRecordString = Tools.getJSONStringFromGivenObject(singleBMSRead);
 				kafkaProducer.produceMessage(topicName, String.valueOf(i), singleBMSRecordString);
 				System.out.println(singleBMSRecordString);
-				TimeUnit.SECONDS.sleep(timeBetweenMessagesInt);
+				TimeUnit.MILLISECONDS.sleep(timeBetweenMessagesInt);
 			} catch (JsonProcessingException e) {
 				System.out.println("JsonProcessingException - error during getting JSON from single BMS read object");
 				e.printStackTrace();
