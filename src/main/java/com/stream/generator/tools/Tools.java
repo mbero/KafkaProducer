@@ -3,6 +3,7 @@ package com.stream.generator.tools;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,7 +31,7 @@ public class Tools {
 	 * @return String
 	 * @throws ParseException 
 	 */
-	public static String getMillisecondsFromBMSDateString(String date) throws ParseException {
+	public static String getMillisecondsFromBMSDateStringPrefixedByRandomUUID(String date) throws ParseException {
 		//String[] cuttedDate = date.split(".");
 		String cuttedDate = date.substring(0,date.length()-7);
 		String millisecondsPart = date.substring(date.length()-7, date.length());//cuttedDate[1];
@@ -38,8 +39,9 @@ public class Tools {
 		String properlyFormattedDate = cuttedDate  + cuttedMillisecondsPart;
 		String millisecondsFromProperlyFormattedString = getMilliSecondsFromGivenDateFormat("yyyy-MM-dd HH:mm:ss.SSS",
 				properlyFormattedDate);
+		 String uuid = UUID.randomUUID().toString();
 
-		return millisecondsFromProperlyFormattedString;
+		return uuid + "_" +millisecondsFromProperlyFormattedString;
 	}
 
 	public static String getMilliSecondsFromGivenDateFormat(String dateFormat, String date) throws ParseException {

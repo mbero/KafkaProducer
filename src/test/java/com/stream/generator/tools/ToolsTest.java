@@ -28,7 +28,7 @@ public class ToolsTest {
 	@Test
 	public void testGetMillisecondsFromBMSDateString() {
 		try {
-			String milliseconds = Tools.getMillisecondsFromBMSDateString("2017-03-31 10:13:37.088000");
+			String milliseconds = Tools.getMillisecondsFromBMSDateStringPrefixedByRandomUUID("2017-03-31 10:13:37.088000");
 			assertTrue(milliseconds.equals("")!=true);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

@@ -52,7 +52,7 @@ public class StreamDataObjectsGenerator {
 				String readValue = rs.getString("VALUE");
 				String readIOdev_id = rs.getString("IODEV_ID");
 				String readTag_id = rs.getString("TAG_ID");
-				String readDateInMilliseconds = Tools.getMillisecondsFromBMSDateString(readDate);
+				String readDateInMilliseconds = Tools.getMillisecondsFromBMSDateStringPrefixedByRandomUUID(readDate);
 				SingleBMSReadRecord singleBMSReadRecord = new SingleBMSReadRecord(readDate, readValue, readIOdev_id,
 						readTag_id, readDateInMilliseconds);
 				listOfReadRecord.add(singleBMSReadRecord);
@@ -121,7 +121,7 @@ public class StreamDataObjectsGenerator {
 			// 10:13:37.088000"}
 			String readDateInMilliseconds = "";
 			try {
-				readDateInMilliseconds = Tools.getMillisecondsFromBMSDateString( currentJSONObject.get("readDate").toString());
+				readDateInMilliseconds = Tools.getMillisecondsFromBMSDateStringPrefixedByRandomUUID( currentJSONObject.get("readDate").toString());
 			} catch (java.text.ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

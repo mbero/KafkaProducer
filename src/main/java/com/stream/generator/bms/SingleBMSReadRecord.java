@@ -13,7 +13,6 @@ public class SingleBMSReadRecord {
 	private String readTag_id;
 	private String readDateMillis; //FIXME  - probably temporary property, readDate will be date in Milliseconds
 	
-	
 
 	public String getReadDateMillis() {
 		return readDateMillis;
